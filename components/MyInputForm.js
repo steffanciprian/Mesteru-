@@ -1,9 +1,9 @@
 import React from 'react';
-import {TextInput, StyleSheet, View} from 'react-native';
+import {TextInput, StyleSheet, View, Dimensions} from 'react-native';
 
 const MyInputForm = props => {
     return (
-        <View>
+        <View style={styles.inputTextContainer}>
             <TextInput
                 placeholder={props.placeholderText}
                 id={props.id}
@@ -13,10 +13,18 @@ const MyInputForm = props => {
                 errorText={props.errorMessageText}
                 onChangeText={props.onTouchTextInput}
                 secureTextEntry={props.secureTextEntry}
+                style={{textAlign: 'center'}}
             />
         </View>
     )
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    inputTextContainer: {
+        width: Dimensions.get('window').width * 0.5,
+        height: Dimensions.get('window').width * 0.5 * 0.2,
+        textAlign: 'center',
+        justifyContent: 'center',
+    }
+});
 export default MyInputForm;

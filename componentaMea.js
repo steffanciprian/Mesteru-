@@ -1,24 +1,26 @@
 import React, {useState} from 'react';
-import {TextInput, StyleSheet, View} from 'react-native';
+import {StyleSheet, Dimensions, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import * as authActions from './store/actions/auth';
 import MyButton from "./components/MyButton";
 import MyInputForm from "./components/MyInputForm";
+import Colors from "./components/Colors";
 
 const MyComponent = () => {
+
+    const dispatch = useDispatch();
+    const signUpWithEmailAndPassword = () => {
+        dispatch(authActions.signUpWithEmailAndPassword(email, password));
+    }
+    const logInWithEmailAndPassword = () => {
+        dispatch(authActions.loginWithEmailAndPassword(email,password));
+    }
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const dispatch = useDispatch();
-    const signupHandler = () => {
-        dispatch(authActions.signUp(email, password));
-    }
-
     return (
         <View style={styles.container}>
-            <MyButton title='Sign up'
-                      onPressAction={() => signupHandler(email, password)}/>
             <MyInputForm
                 placeholderText="email"
                 id="email"
@@ -39,6 +41,17 @@ const MyComponent = () => {
                 errorMessageText="Please enter a valid password"
                 onTouchTextInput={text => setPassword(text)}
             />
+            <MyButton
+                color={Colors.primary}
+                title='Log in'
+                onPressAction={() => {
+                    logInWithEmailAndPassword(email,password)
+                }}/>
+            <MyButton
+                color={Colors.secondary}
+                title='Sign up'
+                onPressAction={() => signUpWithEmailAndPassword(email, password)}/>
+
         </View>
     )
 }
