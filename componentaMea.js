@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
-import {Button, TextInput, StyleSheet, View} from 'react-native';
+import {TextInput, StyleSheet, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import * as authActions from './store/actions/auth';
+import MyButton from "./components/MyButton";
+import MyInputForm from "./components/MyInputForm";
 
 const MyComponent = () => {
 
@@ -15,27 +17,27 @@ const MyComponent = () => {
 
     return (
         <View style={styles.container}>
-            <Button title='Sign up'
-                    onPress={() => signupHandler(email, password)}/>
-            <TextInput
-                placeholder="email"
+            <MyButton title='Sign up'
+                      onPressAction={() => signupHandler(email, password)}/>
+            <MyInputForm
+                placeholderText="email"
                 id="email"
                 label='E-mail'
-                keyboard-type="email-address"
-                autoCapitalize="none"
-                errorText="please enter a valid email address"
-                onChangeText={text => setEmail(text)}
+                keyboardType="email-address"
+                autoCapitalizeForm="none"
+                errorMessageText="please enter a valid email address"
+                onTouchTextInput={text => setEmail(text)}
             />
-            <TextInput
-                placeholder="password"
+            <MyInputForm
+                placeholderText="password"
                 id="password"
                 label="Password"
-                keyboard-type="default"
+                keyboardType="default"
                 secureTextEntry
                 minLenght={5}
-                autoCapitalize="none"
-                errorText="Please enter a valid password"
-                onChangeText={text => setPassword(text)}
+                autoCapitalizeForm="none"
+                errorMessageText="Please enter a valid password"
+                onTouchTextInput={text => setPassword(text)}
             />
         </View>
     )
