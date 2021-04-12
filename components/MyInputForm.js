@@ -13,7 +13,7 @@ const MyInputForm = props => {
                 errorText={props.errorMessageText}
                 onChangeText={props.onTouchTextInput}
                 secureTextEntry={props.secureTextEntry}
-                style={{textAlign: 'center'}}
+                style={styles.inputText}
             />
         </View>
     )
@@ -25,6 +25,12 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').width * 0.5 * 0.2,
         textAlign: 'center',
         justifyContent: 'center',
+    },
+    inputText:{
+        textAlign:'center',
+        borderWidth:1,
+        borderColor:'grey',
+        borderRadius:8,
     }
 });
 export default MyInputForm;
