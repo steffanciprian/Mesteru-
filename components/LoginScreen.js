@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, ActivityIndicator, View, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {ActivityIndicator, Alert, Keyboard, StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import * as authActions from '../store/actions/auth';
 import MyButton from "./MyButton";
 import MyInputForm from "./MyInputForm";
 import Colors from "../constants/Colors";
+import {FacebookSocialButton} from "react-native-social-buttons";
 
-const MyComponent = () => {
+const LoginScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const MyComponent = () => {
         setIsLoading(true);
         try {
             await dispatch(authActions.signUp(email, password));
+            props.navigation.navigate('MainScreen');
         } catch (error) {
             setError(error.message);
         }
@@ -35,6 +37,7 @@ const MyComponent = () => {
         setIsLoading(true);
         try {
             await dispatch(authActions.logIn(email, password));
+            props.navigation.navigate('MainScreen');
         } catch (error) {
             setError(error.message);
         }
@@ -44,6 +47,7 @@ const MyComponent = () => {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.container}>
+                <FacebookSocialButton/>
                 <MyInputForm
                     placeholderText="E-Mail"
                     id="email"
@@ -76,8 +80,8 @@ const MyComponent = () => {
                     color={Colors.secondary}
                     title='Sign up'
                     onPressAction={() => signUp(email, password)}/>
-            </View>
 
+            </View>
         </TouchableWithoutFeedback>
     )
 }
@@ -89,4 +93,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
-export default MyComponent;
+export default LoginScreen;
