@@ -12,37 +12,34 @@ const MyComponent = () => {
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     useEffect(() => {
         if (error) {
             Alert.alert('An error occured!', error, [{text: 'Ok'}])
         }
-    }, error)
+    }, [error])
 
     const signUp = async () => {
         setError(null);
         setIsLoading(true);
         try {
             await dispatch(authActions.signUp(email, password));
-
         } catch (error) {
             setError(error.message);
         }
         setIsLoading(false);
     }
+
     const logIn = async () => {
         setError(null);
         setIsLoading(true);
         try {
-           await dispatch(authActions.logIn(email, password));
-
+            await dispatch(authActions.logIn(email, password));
         } catch (error) {
             setError(error.message);
         }
         setIsLoading(false);
-
     }
-
-
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
