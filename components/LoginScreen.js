@@ -21,27 +21,41 @@ const LoginScreen = props => {
     }, [error])
 
     const signUp = async () => {
-        setError(null);
-        setIsLoading(true);
-        try {
-            await dispatch(authActions.signUp(email, password));
-            props.navigation.navigate('MainScreen');
-        } catch (error) {
-            setError(error.message);
+        if(email.length < 6 || password.length<6)
+        {
+            Alert.alert('Invalid champs');
+        }else{
+            setError(null);
+            setIsLoading(true);
+            try {
+                await dispatch(authActions.signUp(email, password));
+                props.navigation.navigate('MainScreen');
+            } catch (error) {
+                setError(error.message);
+            }
+            setIsLoading(false);
         }
-        setIsLoading(false);
+
     }
 
     const logIn = async () => {
-        setError(null);
-        setIsLoading(true);
-        try {
-            await dispatch(authActions.logIn(email, password));
-            props.navigation.navigate('MainScreen');
-        } catch (error) {
-            setError(error.message);
+        if(email.length < 6 )
+        {
+            Alert.alert('Invalid E-Mail');
+        }else if(password.length<6) {
+            Alert.alert('Invalid password');
+
+        }else{
+            setError(null);
+            setIsLoading(true);
+            try {
+                await dispatch(authActions.logIn(email, password));
+                props.navigation.navigate('MainScreen');
+            } catch (error) {
+                setError(error.message);
+            }
+            setIsLoading(false);
         }
-        setIsLoading(false);
     }
 
     return (

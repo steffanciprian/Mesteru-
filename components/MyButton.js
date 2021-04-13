@@ -7,6 +7,7 @@ const MyButton = props => {
                 title={props.title}
                 onPress={props.onPressAction}
                 color={props.color}
+                style={styles.buttonStyle}
             />
         </View>
     )
@@ -14,8 +15,11 @@ const MyButton = props => {
 
 const styles = StyleSheet.create({
     buttonContainer:{
-        width:Dimensions.get('window').width*0.5,
-        height:Dimensions.get('window').width*0.5 *0.2,
+        width:Dimensions.get('window').width*0.8,
+        height:Dimensions.get('window').width*0.1,
+    },
+    buttonStyle:{
+        height:20,
     }
 });
 export default MyButton;

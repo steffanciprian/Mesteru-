@@ -1,4 +1,4 @@
 export default{
-    primary:"cadetblue",
-    secondary:"brown"
+    primary:"#FFC0CB",
+    secondary:"#87ceeb"
 }

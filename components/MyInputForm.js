@@ -21,8 +21,8 @@ const MyInputForm = props => {
 
 const styles = StyleSheet.create({
     inputTextContainer: {
-        width: Dimensions.get('window').width * 0.5,
-        height: Dimensions.get('window').width * 0.5 * 0.2,
+        width:Dimensions.get('window').width*0.8,
+        height:Dimensions.get('window').width*0.5 *0.2,
         textAlign: 'center',
         justifyContent: 'center',
     },
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         borderWidth:1,
         borderColor:'grey',
         borderRadius:8,
+        height: 40,
     }
 });
 export default MyInputForm;
