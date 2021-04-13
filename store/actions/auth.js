@@ -15,10 +15,10 @@ export const signUp = (email, password) => {
                         returnSecureToken: true
                     })
                 })
+        const dataFetched = await response.json();
         if (!response.ok) {
-            const errorResData = await response.json();
-            const errorId = errorResData.error.message;
-            console.log(errorResData.error.message)
+            const errorId = dataFetched.error.message;
+            console.log(dataFetched.error.message)
             let message = 'Something went wrong!';
             if (errorId === 'EMAIL_EXISTS') {
                 message = 'E-mail adress already used';
@@ -29,7 +29,7 @@ export const signUp = (email, password) => {
             }
             throw new Error(message);
         }
-        dispatch({type: SIGNUP});
+        dispatch({type: SIGNUP, token: dataFetched.token, userId: dataFetched.userId});
     };
 };
 
@@ -49,10 +49,10 @@ export const logIn = (email, password) => {
                         returnSecureToken: true
                     })
                 })
+        const dataFetched = await response.json();
         if (!response.ok) {
-            const errorResData = await response.json();
-            const errorId = errorResData.error.message;
-            console.log(errorResData.error.message)
+            const errorId = dataFetched.error.message;
+            console.log(dataFetched.error.message)
             let message = 'Something went wrong!';
             if (errorId === 'EMAIL_NOT_FOUND') {
                 message = 'Email could not be found';
@@ -64,6 +64,6 @@ export const logIn = (email, password) => {
             throw new Error(message);
         }
 
-        dispatch({type: LOGIN});
+        dispatch({type: LOGIN, token: dataFetched.token, userId: dataFetched.userId});
     };
 };
