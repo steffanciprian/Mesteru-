@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {StyleSheet, ActivityIndicator, View, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, ActivityIndicator, View, TouchableWithoutFeedback, Keyboard, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
 import * as authActions from '../store/actions/auth';
 import MyButton from "./MyButton";
@@ -8,21 +8,41 @@ import Colors from "../constants/Colors";
 
 const MyComponent = () => {
     const [isLoading, setIsLoading] = useState(false);
-
+    const [error, setError] = useState();
     const dispatch = useDispatch();
-    const signUpWithEmailAndPassword = () => {
-        setIsLoading(true);
-        dispatch(authActions.signUpWithEmailAndPassword(email, password));
-        setIsLoading(false);
-    }
-    const logInWithEmailAndPassword = () => {
-        setIsLoading(true);
-        dispatch(authActions.loginWithEmailAndPassword(email, password));
-        setIsLoading(false);
-    }
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    useEffect(() => {
+        if (error) {
+            Alert.alert('An error occured!', error, [{text: 'Ok'}])
+        }
+    }, error)
+
+    const signUp = async () => {
+        setError(null);
+        setIsLoading(true);
+        try {
+            await dispatch(authActions.signUp(email, password));
+
+        } catch (error) {
+            setError(error.message);
+        }
+        setIsLoading(false);
+    }
+    const logIn = async () => {
+        setError(null);
+        setIsLoading(true);
+        try {
+           await dispatch(authActions.logIn(email, password));
+
+        } catch (error) {
+            setError(error.message);
+        }
+        setIsLoading(false);
+
+    }
+
+
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -53,12 +73,12 @@ const MyComponent = () => {
                         color={Colors.primary}
                         title='Log in'
                         onPressAction={() => {
-                            logInWithEmailAndPassword(email, password)
+                            logIn(email, password)
                         }}/>}
                 <MyButton
                     color={Colors.secondary}
                     title='Sign up'
-                    onPressAction={() => signUpWithEmailAndPassword(email, password)}/>
+                    onPressAction={() => signUp(email, password)}/>
             </View>
 
         </TouchableWithoutFeedback>
