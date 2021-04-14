@@ -1,8 +1,9 @@
 class TipServiciu {
-    constructor(id, title, color) {
+    constructor(id, title, color,uri) {
         this.id = id;
         this.title = title;
         this.color = color;
+        this.uri=uri;
     }
 }
 export default TipServiciu;

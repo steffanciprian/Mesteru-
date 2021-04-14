@@ -11,13 +11,17 @@ const ServiceCard = props => {
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <Image
-                        source={{
-                            uri: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/naildesign-1600704777.jpg'
+
+                        // source={{
+                        //     uri: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/naildesign-1600704777.jpg'
+                        // }}
+                              source={{
+                            uri: props.uri
                         }}
                         style={styles.imageStyle}/>
                 </View>
 
-                <Text>{props.title}</Text>
+                <Text>{props.title} </Text>
             </View>
         </TouchableOpacity>
     )

@@ -7,9 +7,21 @@ const MainScreen = props => {
     const renderEachItem = itemData => {
         return (
             <ServiceCard
-                onPress={() => props.navigation.navigate('ServiceDetailScreen')}
                 color={itemData.item.color}
                 title={itemData.item.title}
+                uri={itemData.item.uri}
+                onPress={() => {
+                    props.navigation.navigate({
+                        routeName: 'ServiceDetailScreen',
+                        params: {
+                            serviciuId: itemData.item.id,
+                            serviciuTitle: itemData.item.title,
+                            serviciuUri:itemData.item.uri,
+
+                        }
+                    })
+                }
+                }
             />
         )
     }
@@ -23,10 +35,10 @@ const MainScreen = props => {
     )
 }
 
-const styles=StyleSheet.create({
-    flatListContainer:{
-        justifyContent:'center',
-        alignItems:'center',
+const styles = StyleSheet.create({
+    flatListContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 })
 
