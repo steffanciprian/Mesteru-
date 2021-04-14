@@ -1,32 +1,38 @@
 import React from 'react';
-import {Text, View, FlatList} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import {CATEGORIES} from "../data/CategoriesData";
 import ServiceCard from "../components/ServiceCard";
 
-const MainScreen = () => {
+const MainScreen = props => {
     const renderEachItem = itemData => {
         return (
             <ServiceCard
-            color={itemData.item.color}
-            title={itemData.item.title}
+                onPress={() => props.navigation.navigate('ServiceDetailScreen')}
+                color={itemData.item.color}
+                title={itemData.item.title}
             />
 
         )
     }
-return (
-    <View>
-        <Text>
-            Bine ati venit pe MainScreen!
-        </Text>
-        <FlatList
-            data={CATEGORIES}
-            renderItem={renderEachItem}
-            numColumns={1}/>
-    </View>
-)
+    return (
+        <View style={styles.flatListContainer}>
+            <FlatList
+                data={CATEGORIES}
+                renderItem={renderEachItem}
+                numColumns={1}/>
+        </View>
+    )
 }
-MainScreen.navigatinOptions =
+
+const styles=StyleSheet.create({
+    flatListContainer:{
+        justifyContent:'center',
+        alignItems:'center',
+    }
+})
+
+MainScreen.navigationOptions =
     {
-        headerTitle: 'Alege din serviciile noastre'
+        headerTitle: 'Welcome'
     }
 export default MainScreen;

@@ -39,11 +39,21 @@ const LoginScreen = props => {
     }
 
     const logIn = async () => {
+        if(email.length === 0 )
+        {
+            Alert.alert('E-mail cannot be empty','Please fill in your E-mail');
+        }else if(password.length === 0)
+        {
+            Alert.alert('Password cannot be empty', 'Please fill in your password');
+        }
         if(email.length < 6 )
         {
-            Alert.alert('Invalid E-Mail');
+            Alert.alert('Invalid E-Mail','Please enter a valid email',);
         }else if(password.length<6) {
-            Alert.alert('Invalid password');
+            Alert.alert('Invalid password','Ok',{
+                text:'Cancel',
+                style:'disruptive'
+            });
 
         }else{
             setError(null);

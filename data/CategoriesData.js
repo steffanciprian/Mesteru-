@@ -6,6 +6,10 @@ export const CATEGORIES = [
     new Category('c3', 'Machiaj', '#f5a442'),
     new Category('c4', 'Epilare', '#f5d142'),
     new Category('c5', 'Masaj', '#368dff'),
+    new Category('c6', 'Masaj', '#368dff'),
+    new Category('c7', 'Masaj', '#368dff'),
+    new Category('c8', 'Masaj', '#368dff'),
+    new Category('c9', 'Masaj', '#368dff'),
 ];
 
 

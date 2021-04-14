@@ -20,12 +20,14 @@ export const signUp = (email, password) => {
             const errorId = dataFetched.error.message;
             console.log(dataFetched.error.message)
             let message = 'Something went wrong!';
-            if (errorId === 'EMAIL_EXISTS') {
-                message = 'E-mail adress already used';
-            } else if (errorId === 'INVALID_PASSWORD') {
-                message = 'Invalid password';
-            } else if (errorId === 'USER_DISABLED') {
-                message = 'USER_DISABLED';
+            switch (errorId)
+            {
+                case 'USER_DISABLED' : message = 'Account disabled';
+                    break;
+                case 'EMAIL_EXISTS' : message = 'Account already exists';
+                    break;
+                case 'INVALID_PASSWORD' : message = 'Incorrect password';
+                    break;
             }
             throw new Error(message);
         }
@@ -54,12 +56,14 @@ export const logIn = (email, password) => {
             const errorId = dataFetched.error.message;
             console.log(dataFetched.error.message)
             let message = 'Something went wrong!';
-            if (errorId === 'EMAIL_NOT_FOUND') {
-                message = 'Email could not be found';
-            } else if (errorId === 'EMAIL_EXISTS') {
-                message = 'Account already exists';
-            } else if (errorId === 'INVALID_PASSWORD') {
-                message = 'Invalid password';
+            switch (errorId)
+            {
+                case 'EMAIL_NOT_FOUND' : message = 'Email could not be found';
+                break;
+                case 'EMAIL_EXISTS' : message = 'Account already exists';
+                break;
+                case 'INVALID_PASSWORD' : message = 'Incorrect password';
+                break;
             }
             throw new Error(message);
         }
