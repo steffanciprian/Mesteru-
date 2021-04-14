@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
-import {CATEGORIES} from "../data/CategoriesData";
+import {Servicii} from "../data/Servicii";
 import ServiceCard from "../components/ServiceCard";
 
 const MainScreen = props => {
@@ -11,13 +11,12 @@ const MainScreen = props => {
                 color={itemData.item.color}
                 title={itemData.item.title}
             />
-
         )
     }
     return (
         <View style={styles.flatListContainer}>
             <FlatList
-                data={CATEGORIES}
+                data={Servicii}
                 renderItem={renderEachItem}
                 numColumns={1}/>
         </View>
