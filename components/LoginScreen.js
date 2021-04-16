@@ -5,7 +5,6 @@ import * as authActions from '../store/actions/auth';
 import MyButton from "./MyButton";
 import MyInputForm from "./MyInputForm";
 import Colors from "../constants/Colors";
-import {FacebookSocialButton} from "react-native-social-buttons";
 
 const LoginScreen = props => {
     const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +48,6 @@ const LoginScreen = props => {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             <View style={styles.container}>
-                <FacebookSocialButton/>
                 <MyInputForm
                     placeholderText="E-Mail"
                     id="email"
