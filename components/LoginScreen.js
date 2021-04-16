@@ -16,56 +16,34 @@ const LoginScreen = props => {
 
     useEffect(() => {
         if (error) {
-            Alert.alert('An error occured!', error, [{text: 'Ok'}])
+            Alert.alert('An error occured!', error, [{text: 'Ok'}]);
+            console.log("ceva");
         }
     }, [error])
 
     const signUp = async () => {
-        if(email.length < 6 )
-        {
-            Alert.alert('Invalid E-Mail','Please enter a valid email',{style:'disruptive'});
-        }else if(password.length<6) {
-            Alert.alert('Invalid password','Ok',{
-                text:'Cancel',
-                style:'disruptive'
-            });
-
-        }else{
-            setError(null);
-            setIsLoading(true);
-            try {
-                await dispatch(authActions.signUp(email, password));
-                props.navigation.navigate('MainScreen');
-            } catch (error) {
-                setError(error.message);
-            }
-            setIsLoading(false);
+        setError(null);
+        setIsLoading(true);
+        try {
+            await dispatch(authActions.signUp(email, password));
+            props.navigation.navigate('MainScreen');
+        } catch (error) {
+            setError(error.message);
         }
+        setIsLoading(false);
 
     }
-
+    //
     const logIn = async () => {
-
-        if(email.length < 6 )
-        {
-            Alert.alert('Invalid E-Mail','Please enter a valid email',{style:'disruptive'});
-        }else if(password.length<6) {
-            Alert.alert('Invalid password','Ok',{
-                text:'Cancel',
-                style:'disruptive'
-            });
-
-        }else{
-            setError(null);
-            setIsLoading(true);
-            try {
-                await dispatch(authActions.logIn(email, password));
-                props.navigation.navigate('MainScreen');
-            } catch (error) {
-                setError(error.message);
-            }
-            setIsLoading(false);
+        setError(null);
+        setIsLoading(true);
+        try {
+            await dispatch(authActions.logIn(email, password));
+            props.navigation.navigate('MainScreen');
+        } catch (error) {
+            setError(error.message);
         }
+        setIsLoading(false);
     }
 
     return (

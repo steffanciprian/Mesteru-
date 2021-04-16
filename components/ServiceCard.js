@@ -11,16 +11,9 @@ const ServiceCard = props => {
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
                     <Image
-
-                        // source={{
-                        //     uri: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/naildesign-1600704777.jpg'
-                        // }}
-                              source={{
-                            uri: props.uri
-                        }}
+                        source={{uri: props.uri}}
                         style={styles.imageStyle}/>
                 </View>
-
                 <Text>{props.title} </Text>
             </View>
         </TouchableOpacity>
@@ -30,12 +23,12 @@ const ServiceCard = props => {
 const styles = StyleSheet.create({
     serviceCard: {
         margin: 15,
-        justifyContent: 'center',
         borderWidth: 1,
         height: Dimensions.get('window').height * 0.3,
-        width: Dimensions.get('window').width * 0.8,
+        width: '100%',
         borderRadius: 5,
         borderColor: Colors.secondary,
+
     },
     container: {
         alignItems: 'center',
@@ -44,9 +37,10 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
     },
-    imageContainer:{
-        width:'99%',
-        height:'90%',
+    imageContainer: {
+        width: '99%',
+        height: '90%',
+
     }
 })
 
