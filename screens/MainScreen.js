@@ -5,15 +5,18 @@ import ServiceCard from "../components/ServiceCard";
 import {SearchBar} from 'react-native-elements'
 
 const MainScreen = props => {
-    const [searchText, setSearchText] = useState();
     const [data, setData] = useState(Servicii);
     const [filteredData, setFilteredData] = useState();
+    const [value, setValue] = useState();
 
     const search = searchText => {
-        setSearchText(searchText);
-        const filteredData = data.filter(item => item.description.includes(searchText)
-        );
+        let filteredData = data.filter(item => {
+            if (item.title.toLowerCase().includes(searchText) || item.title.toLowerCase() === searchText) {
+                return item;
+            }
+        });
         setFilteredData(filteredData);
+        setValue(searchText);
     };
     const renderEachItem = itemData => {
         return (
@@ -30,8 +33,7 @@ const MainScreen = props => {
                             serviciuUri: itemData.item.uri,
                         }
                     })
-                }
-                }
+                }}
             />
         )
     }
@@ -44,16 +46,16 @@ const MainScreen = props => {
                     placeholder="Search..."
                     autoCapitalize="none"
                     autoCorrect={false}
+                    onChangeText={text => search(text)}
+                    value={value}
                 />
             </View>
-
             <View style={styles.flatListContainer}>
                 <FlatList
-                    data={filteredData && filteredData.length >0 ? filteredData : data}
+                    data={filteredData ? filteredData : data}
                     renderItem={renderEachItem}
                     numColumns={1}/>
             </View>
-
         </View>
     )
 }
@@ -69,11 +71,8 @@ const styles = StyleSheet.create({
     },
     mainScreenStyle: {
         alignItems: 'center',
-
     }
-
 })
-
 MainScreen.navigationOptions =
     {
         headerTitle: 'Welcome'
