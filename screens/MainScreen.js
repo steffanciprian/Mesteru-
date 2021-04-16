@@ -49,7 +49,7 @@ const MainScreen = props => {
 
             <View style={styles.flatListContainer}>
                 <FlatList
-                    data={filteredData && filteredData.length >0}
+                    data={filteredData && filteredData.length >0 ? filteredData : data}
                     renderItem={renderEachItem}
                     numColumns={1}/>
             </View>
