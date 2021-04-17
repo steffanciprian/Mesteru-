@@ -7,9 +7,6 @@ export const Servicii = [
     new TipServiciu('c4', 'Epilare', '#f5d142','https://beautysugar.ro/wp-content/uploads/2019/10/csm_plantur39-graphic-growth-cycle-hair-root-romania_9332d05689-2.jpg'),
     new TipServiciu('c5', 'Masaj', '#368dff','https://static.toiimg.com/photo/72975551.cms'),
     new TipServiciu('c6', 'Pedichiura', '#368dff','https://static.toiimg.com/photo/72975551.cms'),
-    new TipServiciu('c7', 'Masaj', '#368dff','https://static.toiimg.com/photo/72975551.cms'),
-    new TipServiciu('c8', 'Masaj', '#368dff','https://static.toiimg.com/photo/72975551.cms'),
-    new TipServiciu('c9', 'Masaj', '#368dff','https://static.toiimg.com/photo/72975551.cms'),
 ];
 
 
